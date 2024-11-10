@@ -28,3 +28,8 @@ console.log(nameLengths);
 const sortedProvinces = provinces.sort((a,b)=>
 a.localeCompare(b));
 console.log(sortedProvinces);
+
+const nonCapeProvinces = provinces.filter(provinces =>
+  provinces !== 'Western Cape');
+  console.log(nonCapeProvinces);
+

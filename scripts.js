@@ -17,3 +17,10 @@ const products = [
 provinces.forEach((province, index)=> {
   console.log(`The ${index + 1} province is ${province}`);
 });
+
+const UpperCaseProvinces = provinces.map(province => province.toUpperCase());
+provinces.toUpperCase(();
+console.log(UpperCaseProvinces));
+
+const nameLengths = name.map(name => name.Length);
+console.log(nameLengths);

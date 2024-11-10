@@ -35,3 +35,12 @@ const nonCapeProvinces = provinces.filter(provinces =>
 
 const hasS = names.map(name => name.includes('S'));
 console.log(hasS);
+
+const provinceMapping = names.reduce((obj, name, index)
+=> {
+  obj[name] = provinces[index];
+  return obj;
+  }, {});
+  console.log(provinceMapping);
+
+  

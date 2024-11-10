@@ -1,4 +1,3 @@
-
 // A list of provinces:
 const provinces = ['Western Cape', 'Gauteng', 'Northern Cape', 'Eastern Cape', 'KwaZulu-Natal', 'Free State'];
 
@@ -25,11 +24,11 @@ const UpperCaseProvinces = provinces.map(province => province.toUpperCase());
 console.log(UpperCaseProvinces);
 
 // Get lengths of names
-const nameLengths = names.map(name => name.length); // Fixed 'name' to 'names' and 'Length' to 'length'
+const nameLengths = names.map(name => name.length);
 console.log(nameLengths);
 
 // Sort provinces
-const sortedProvinces = provinces.sort((a, b) => a.localeCompare(b));
+const sortedProvinces = [...provinces].sort((a, b) => a.localeCompare(b)); // Create a copy to prevent modifying the original array
 console.log(sortedProvinces);
 
 // Filter out 'Western Cape'
@@ -48,7 +47,7 @@ const provinceMapping = names.reduce((obj, name, index) => {
 console.log(provinceMapping);
 
 // Print products
-products.forEach(product => console.log(product)); // Fixed console,log to console.log
+products.forEach(product => console.log(product));
 
 // Filter products with short names
 const shortNamedProducts = products.filter(product => product.product.length <= 5);
@@ -56,23 +55,26 @@ console.log(shortNamedProducts);
 
 // Calculate total price of products
 const totalPrice = products
-  .filter(product => product.price !== '' && product.price !== "") 
-  .map(product => Number(product.price));
+  .filter(product => {
+    const price = String(product.price).trim();
+    return price !== '';  //products where price is not empty or blank
+  })
+  .map(product => parseFloat(product.price));  // Convert string prices to float
 console.log(totalPrice);
 
 // Calculate price statistics
 const priceStats = products.reduce((acc, product) => {
-  const price = typeof product.price === 'string' ? parseFloat(product.price) : product.price;
+  const price = parseFloat(product.price);
   if (!isNaN(price)) {
     acc.max = Math.max(acc.max || -Infinity, price);
     acc.min = Math.min(acc.min || Infinity, price);
   }
   return acc;
-}, { max: -Infinity, min: Infinity }); // Fixed the initialization object
+}, { max: -Infinity, min: Infinity });
 console.log(priceStats);
 
 // Extract product entries excluding price and product name
-const productEntries = products.reduce((acc, { product, price, ...rest }) => { // Using destructuring
+const productEntries = products.reduce((acc, { product, price, ...rest }) => {
   Object.entries(rest).forEach(([key, value]) => {
     acc[key] = value;
   });

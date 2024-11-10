@@ -61,4 +61,16 @@ const provinceMapping = names.reduce((obj, name, index)
         acc.max = Math.max( acc.max || -Infinity, price);
         acc.min = Math.min(acc.min || Infinity, price);
       }
-    })
+
+      return acc;
+      {max: -Infinity, min:infinity };
+      console.log(priceStats);
+      const productEntries = Object.entries(products).reduce((acc,[key, value]) =>{
+        if (key !== 'price' && key !== 'product') {
+          acc[key] = value;
+          }
+          return acc;
+          }, {});
+          console.log(productEntries);
+      } )
+  

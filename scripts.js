@@ -74,7 +74,7 @@ const priceStats = products.reduce((acc, product) => {
 console.log(priceStats);
 
 // Extract product entries excluding price and product name
-const productEntries = products.reduce((acc, { product, price, ...rest }) => {
+const productEntries = products.reduce((acc, { ...rest }) => {
   Object.entries(rest).forEach(([key, value]) => {
     acc[key] = value;
   });

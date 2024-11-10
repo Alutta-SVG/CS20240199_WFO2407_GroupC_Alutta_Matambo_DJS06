@@ -54,4 +54,11 @@ const provinceMapping = names.reduce((obj, name, index)
     .map(products => Number(products.price))
     console.log(totalPrice);
 
-    
+    const priceStats = products.reduce((acc, products) =>{
+      const price = typeof products.price === 'string'?
+      parseFloat(products.price) : products.price;
+      if (!isNaN(price)) {
+        acc.max = Math.max( acc.max || -Infinity, price);
+        acc.min = Math.min(acc.min || Infinity, price);
+      }
+    })

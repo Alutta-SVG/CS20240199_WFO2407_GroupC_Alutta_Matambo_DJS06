@@ -33,3 +33,5 @@ const nonCapeProvinces = provinces.filter(provinces =>
   provinces !== 'Western Cape');
   console.log(nonCapeProvinces);
 
+const hasS = names.map(name => name.includes('S'));
+console.log(hasS);

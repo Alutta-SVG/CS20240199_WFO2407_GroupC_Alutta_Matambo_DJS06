@@ -24,3 +24,7 @@ console.log(UpperCaseProvinces));
 
 const nameLengths = name.map(name => name.Length);
 console.log(nameLengths);
+
+const sortedProvinces = provinces.sort((a,b)=>
+a.localeCompare(b));
+console.log(sortedProvinces);

@@ -1,8 +1,9 @@
+
 // A list of provinces:
-const provinces = ['Western Cape', 'Gauteng', 'Northern Cape', 'Eastern Cape', 'KwaZulu-Natal', 'Free State']
+const provinces = ['Western Cape', 'Gauteng', 'Northern Cape', 'Eastern Cape', 'KwaZulu-Natal', 'Free State'];
 
 // A list of names:
-const names = ['Ashwin', 'Sibongile', 'Jan-Hendrik', 'Sifso', 'Shailen', 'Frikkie']
+const names = ['Ashwin', 'Sibongile', 'Jan-Hendrik', 'Sifso', 'Shailen', 'Frikkie'];
 
 // A list of products with prices:
 const products = [
@@ -14,63 +15,67 @@ const products = [
   { product: 'tea', price: '' },
 ];
 
-provinces.forEach((province, index)=> {
+// Print provinces with their index
+provinces.forEach((province, index) => {
   console.log(`The ${index + 1} province is ${province}`);
 });
 
+// Convert provinces to uppercase
 const UpperCaseProvinces = provinces.map(province => province.toUpperCase());
-provinces.toUpperCase(();
-console.log(UpperCaseProvinces));
+console.log(UpperCaseProvinces);
 
-const nameLengths = name.map(name => name.Length);
+// Get lengths of names
+const nameLengths = names.map(name => name.length); // Fixed 'name' to 'names' and 'Length' to 'length'
 console.log(nameLengths);
 
-const sortedProvinces = provinces.sort((a,b)=>
-a.localeCompare(b));
+// Sort provinces
+const sortedProvinces = provinces.sort((a, b) => a.localeCompare(b));
 console.log(sortedProvinces);
 
-const nonCapeProvinces = provinces.filter(provinces =>
-  provinces !== 'Western Cape');
-  console.log(nonCapeProvinces);
+// Filter out 'Western Cape'
+const nonCapeProvinces = provinces.filter(province => province !== 'Western Cape');
+console.log(nonCapeProvinces);
 
+// Check if names contain 'S'
 const hasS = names.map(name => name.includes('S'));
 console.log(hasS);
 
-const provinceMapping = names.reduce((obj, name, index)
-=> {
+// Map names to provinces
+const provinceMapping = names.reduce((obj, name, index) => {
   obj[name] = provinces[index];
   return obj;
-  }, {});
-  console.log(provinceMapping);
+}, {});
+console.log(provinceMapping);
 
-  products.forEach(products =>  console,log(products));
+// Print products
+products.forEach(product => console.log(product)); // Fixed console,log to console.log
 
-  const shortNamedProducts = products.filter(products =>
-    products.product.length <= 5);
-    console.log(shortNamedProducts);
-  
-    const totalPrice = products 
-    .filter(products => products.price !== ''&&products.price !=="")
-    .map(products => Number(products.price))
-    console.log(totalPrice);
+// Filter products with short names
+const shortNamedProducts = products.filter(product => product.product.length <= 5);
+console.log(shortNamedProducts);
 
-    const priceStats = products.reduce((acc, products) =>{
-      const price = typeof products.price === 'string'?
-      parseFloat(products.price) : products.price;
-      if (!isNaN(price)) {
-        acc.max = Math.max( acc.max || -Infinity, price);
-        acc.min = Math.min(acc.min || Infinity, price);
-      }
+// Calculate total price of products
+const totalPrice = products
+  .filter(product => product.price !== '' && product.price !== "") 
+  .map(product => Number(product.price));
+console.log(totalPrice);
 
-      return acc;
-      {max: -Infinity, min:infinity };
-      console.log(priceStats);
-      const productEntries = Object.entries(products).reduce((acc,[key, value]) =>{
-        if (key !== 'price' && key !== 'product') {
-          acc[key] = value;
-          }
-          return acc;
-          }, {});
-          console.log(productEntries);
-      } )
-  
+// Calculate price statistics
+const priceStats = products.reduce((acc, product) => {
+  const price = typeof product.price === 'string' ? parseFloat(product.price) : product.price;
+  if (!isNaN(price)) {
+    acc.max = Math.max(acc.max || -Infinity, price);
+    acc.min = Math.min(acc.min || Infinity, price);
+  }
+  return acc;
+}, { max: -Infinity, min: Infinity }); // Fixed the initialization object
+console.log(priceStats);
+
+// Extract product entries excluding price and product name
+const productEntries = products.reduce((acc, { product, price, ...rest }) => { // Using destructuring
+  Object.entries(rest).forEach(([key, value]) => {
+    acc[key] = value;
+  });
+  return acc;
+}, {});
+console.log(productEntries);

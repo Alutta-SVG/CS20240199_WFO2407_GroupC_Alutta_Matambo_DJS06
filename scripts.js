@@ -43,4 +43,15 @@ const provinceMapping = names.reduce((obj, name, index)
   }, {});
   console.log(provinceMapping);
 
+  products.forEach(products =>  console,log(products));
+
+  const shortNamedProducts = products.filter(products =>
+    products.product.length <= 5);
+    console.log(shortNamedProducts);
   
+    const totalPrice = products 
+    .filter(products => products.price !== ''&&products.price !=="")
+    .map(products => Number(products.price))
+    console.log(totalPrice);
+
+    

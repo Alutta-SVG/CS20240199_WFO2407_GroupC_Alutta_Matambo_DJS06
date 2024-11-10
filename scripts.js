@@ -12,4 +12,8 @@ const products = [
   { product: 'avocado', price: "8" },
   { product: 'coffee', price: 10 },
   { product: 'tea', price: '' },
-]
+];
+
+provinces.forEach((province, index)=> {
+  console.log(`The ${index + 1} province is ${province}`);
+});
